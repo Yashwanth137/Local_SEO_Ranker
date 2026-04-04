@@ -6,7 +6,7 @@
 ## 1. The Story & Vision (The Problem vs. The Solution)
 **The Problem:** Small businesses (plumbers, real estate agents, dentists) constantly struggle to understand why their competitors are outranking them on Google. Meanwhile, Marketing Agencies struggle to capture these small business owners as leads because traditional "Lead Magnets" (like giving away a free PDF or eBook) no longer work. People want instant, personalized value.
 
-**The Solution:** The **Zorvexa Local Ranker**. We built an application that replaces hours of expensive manual SEO auditing with an instant, interactive software experience. By combining real-time Google Search scraping with the reasoning capabilities of OpenAI, we created a tool that instantly diagnoses a business's local ranking, and forces them to provide their contact information to see the results. 
+**The Solution:** The **Zorvexa Local Ranker**. We built an application that replaces hours of expensive manual SEO auditing with an instant, interactive software experience. By combining real-time web search via Tavily with the blazing-fast inference of Groq (Llama 3.3 70B), we created a tool that instantly diagnoses a business's local ranking, and forces them to provide their contact information to see the results. 
 
 ---
 
@@ -14,7 +14,7 @@
 Zorvexa Local Ranker is an automated **Lead Generation Engine** and **SEO Diagnostic Dashboard**. 
 
 1. **The Hook:** A business owner lands on the site and enters their target keyword (e.g., "Plumbers"), location (e.g., "Texas"), and their Website.
-2. **The Analysis:** In the background, the app pulls 100 live organic Google Search results to find exactly where that business ranks against its competitors. It then uses AI to brainstorm completely new, strategic keywords.
+2. **The Analysis:** In the background, the app uses Tavily's advanced search API to pull live organic search results and find exactly where that business ranks against its competitors. It then uses Groq's Llama 3.3 to brainstorm completely new, strategic keywords and generate tailored insights.
 3. **The Trap (Lead Capture):** It presents the user with a partial "Teaser Score." To unlock the full actionable insights and competitor data, the user *must* provide their Name, Email, and Phone Number.
 4. **The Close:** The business gets a beautiful, AI-generated report, and the application owner gets a highly-qualified, warm lead saved directly to their MongoDB database.
 
@@ -26,7 +26,7 @@ The traditional software market is changing. Here is how Zorvexa stays ahead of 
 | The Old Trend (Pre-2025) | The Zorvexa Strategy (2026 & Beyond) |
 | :--- | :--- |
 | **Static Lead Magnets:** Give me your email, I'll send you a generic 10-page PDF on SEO. | **Interactive Value:** Give me your email, and my software will dynamically analyze *your specific website* against your top 10 competitors using AI. |
-| **Manual SEO Audits:** Paying an agency $500 and waiting 3 days to figure out what keywords to use. | **Zero-Cost Instant Audits:** Leveraging SerpAPI and GPT-4o-mini to do 3 days of work in 3 seconds at fractions of a penny. |
+| **Manual SEO Audits:** Paying an agency $500 and waiting 3 days to figure out what keywords to use. | **Zero-Cost Instant Audits:** Leveraging Tavily Search and Groq (Llama 3.3 70B) to do 3 days of work in 3 seconds at fractions of a penny. |
 | **Global SEO Focus:** Trying to rank a small shop nationally against massive corporations. | **Hyper-Local Focus:** Optimizing purely for local dominance, which aligns with the massive rise in "Voice Assistant" local searches (e.g., Siri, Alexa). |
 
 ---
@@ -38,7 +38,7 @@ The traditional software market is changing. Here is how Zorvexa stays ahead of 
 *   **Next.js Serverless Architecture:** Zero idle server costs. The app only runs compute when someone is actively generating a report.
 *   **Mongoose Connection Caching:** Database connections to MongoDB are intelligently cached in global memory, meaning the app will never crash under sudden traffic spikes.
 *   **Modern Aesthetics:** Designed with advanced TailwindCSS dark-mode aesthetics, giving the user a "premium SaaS" feel right from the landing page.
-*   **Plug-and-Play AI:** The system is completely agnostic, meaning as OpenAI releases newer, cheaper models (GPT-5, etc.), the app can be upgraded by changing a single line of code.
+*   **Plug-and-Play AI:** The system uses Groq's OpenAI-compatible API, meaning it can switch between Llama, Mixtral, or any future model by changing a single line of code. As faster and cheaper models emerge, the app adapts instantly.
 
 ---
 
