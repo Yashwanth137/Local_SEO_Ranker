@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState, use } from "react";
-import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { ChevronRight, Trophy, AlertTriangle, CheckCircle } from "lucide-react";
+import { Trophy, AlertTriangle, CheckCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { LeadGateModal } from "@/components/LeadGateModal";
 import { ScoreIndicator } from "@/components/ScoreIndicator";

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Lock, Loader2, Mail, User, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/toaster";
 
 export function LeadGateModal({ reportId, onUnlock }: { reportId: string, onUnlock: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ export function LeadGateModal({ reportId, onUnlock }: { reportId: string, onUnlo
         throw new Error(data.error || "An error occurred");
       }
     } catch (error: any) {
-      alert(error.message);
+      toast(error.message, "error");
       setLoading(false);
     }
   };

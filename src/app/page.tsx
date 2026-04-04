@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Search, MapPin, Building, Globe, Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/toaster";
 
 export default function Home() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Home() {
         throw new Error(data.error || "Failed to analyze data");
       }
     } catch (error: any) {
-      alert(error.message);
+      toast(error.message, "error");
       setLoading(false);
     }
   };
@@ -152,6 +153,17 @@ export default function Home() {
           </form>
         </motion.div>
       </motion.div>
+
+      {/* Footer */}
+      <footer className="w-full mt-auto pt-16 pb-6 px-4 text-center text-sm text-muted-foreground/60">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span>© {new Date().getFullYear()} Zorvexa Local Ranker. All rights reserved.</span>
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-foreground transition-colors">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

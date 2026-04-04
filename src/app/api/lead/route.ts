@@ -2,9 +2,21 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Lead from '@/models/Lead';
 import Report from '@/models/Report';
+import { sendLeadNotification } from '@/lib/email';
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit';
 
 export async function POST(req: Request) {
   try {
+    // Rate limit: 10 lead submissions per minute per IP
+    const ip = getClientIp(req);
+    const limit = checkRateLimit(`lead-${ip}`, { maxRequests: 10, windowSeconds: 60 });
+    if (!limit.allowed) {
+      return NextResponse.json(
+        { error: `Too many submissions. Please try again in ${limit.resetInSeconds} seconds.` },
+        { status: 429, headers: { 'Retry-After': String(limit.resetInSeconds) } }
+      );
+    }
+
     await dbConnect();
     const body = await req.json();
     const { reportId, name, email, phone } = body;
@@ -27,6 +39,15 @@ export async function POST(req: Request) {
     });
 
     await lead.save();
+
+    // Fire-and-forget email notification to admin
+    sendLeadNotification({
+      name,
+      email,
+      phone,
+      keyword: report.keyword,
+      location: report.location
+    }).catch(() => {}); // Swallow any unhandled rejections
 
     return NextResponse.json({ success: true, message: 'Lead saved successfully' });
   } catch (error: any) {
